@@ -1,0 +1,12 @@
+class Solution:
+    def convertToBase7(self, num: int) -> str:
+        if num == 0:
+            return "0"
+        is_neg = num < 0
+        num = abs(num)
+        res = []
+        while num:
+            res.append(str(num % 7))
+            num = num // 7
+        res_str = "".join(reversed(res))
+        return "-" + res_str if is_neg else res_str
