@@ -1,0 +1,9 @@
+def kthGrammar(n: int, k: int) -> int:
+    res = 0
+    while n > 1:
+        half = 1 << (n - 2) 
+        if k > half:
+            res = 1 - res
+            k -= half
+        n -= 1
+    return res
