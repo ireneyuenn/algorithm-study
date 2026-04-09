@@ -1,0 +1,27 @@
+def shellSort(nums):
+    n = len(nums)
+    # Start with a big gap, then reduce the gap
+    gap = n // 2
+    
+    # Keep reducing gap until it becomes 0
+    while gap > 0:
+        # Do insertion sort for this gap size
+        for i in range(gap, n):
+            # Save current element
+            temp = nums[i]
+            # Shift earlier gap-sorted elements up until correct position for nums[i] is found
+            j = i
+            while j >= gap and nums[j - gap] > temp:
+                nums[j] = nums[j - gap]
+                j -= gap
+            # Put temp in correct position
+            nums[j] = temp
+        # Reduce the gap
+        gap = gap // 2
+    
+    return nums
+
+# LeetCode required function
+class Solution:
+    def sortArray(self, nums):
+        return shellSort(nums)
