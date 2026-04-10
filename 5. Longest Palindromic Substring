@@ -1,0 +1,36 @@
+def longestPalindrome(s: str) -> str:
+    # 边界条件：空字符串直接返回
+    if not s:
+        return ""
+    
+    # 初始化最长回文的起始索引和长度
+    start = 0
+    max_len = 1
+    n = len(s)
+    
+    # 扩展函数：从left, right向两边扩展，返回回文长度
+    def expand(left: int, right: int) -> int:
+        while left >= 0 and right < n and s[left] == s[right]:
+            left -= 1
+            right += 1
+        # 退出循环时，左右不相等，所以回文长度是 (right - left - 1)
+        return right - left - 1
+    
+    # 遍历每个字符作为中心
+    for i in range(n):
+        # 奇数长度：中心 i
+        len1 = expand(i, i)
+        # 偶数长度：中心 i 和 i+1
+        len2 = expand(i, i+1)
+        
+        # 取当前最长的回文长度
+        current_len = max(len1, len2)
+        
+        # 更新最长回文
+        if current_len > max_len:
+            max_len = current_len
+            # 计算起始索引
+            start = i - (current_len - 1) // 2
+    
+    # 截取最长回文子串
+    return s[start:start + max_len]
