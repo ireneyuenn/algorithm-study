@@ -1,0 +1,20 @@
+def searchInsert(nums, target):
+    # Left and right pointers for binary search
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        # Calculate middle index (avoid overflow)
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            # Target found, return index directly
+            return mid
+        elif nums[mid] < target:
+            # Target is larger, search right half
+            left = mid + 1
+        else:
+            # Target is smaller, search left half
+            right = mid - 1
+    
+    # If loop ends, left is the insert position
+    return left
