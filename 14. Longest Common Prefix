@@ -7,7 +7,7 @@ def longestCommonPrefix(strs):
     
     for s in strs[1:]:
         
-        while not s.startswith(prefix):
+        while not s.startswith(prefix): # startswith() is python fuction 
             prefix = prefix[:-1]  
           
             if not prefix:
